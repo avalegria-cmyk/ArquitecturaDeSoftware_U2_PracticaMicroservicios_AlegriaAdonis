@@ -1,0 +1,24 @@
+// use prisma-8
+
+model Factura {
+  id            ObjectId   @id @map("_id")
+  codigo        String     @unique
+  fecha         Date
+  cod_cliente   Int32
+  total         Decimal128
+  descuento     Decimal128
+  iva           Decimal128
+  total_a_pagar Decimal128
+
+  detalles_facturas DetalleFactura[]
+  @@map("facturas")
+}
+
+type DetalleFactura{
+  codigo Int32
+  cod_factura Int32
+  cod_producto Int32
+  cantidad Int32
+  subtotal Decimal128
+  precio Decimal128
+}

@@ -1,0 +1,292 @@
+{
+  "schemaVersion": "1",
+  "targetFamily": "mongo",
+  "target": "mongo",
+  "profileHash": "251b3ce23f6c9f561892e7c1af9d2cc941a13d64ba1aa7226b90036b09568cc3",
+  "roots": {
+    "facturas": {
+      "model": "Factura",
+      "namespace": "__unbound__"
+    }
+  },
+  "domain": {
+    "namespaces": {
+      "__unbound__": {
+        "models": {
+          "Factura": {
+            "fields": {
+              "cod_cliente": {
+                "nullable": false,
+                "type": {
+                  "codecId": "mongo/int32@1",
+                  "kind": "scalar"
+                }
+              },
+              "codigo": {
+                "nullable": false,
+                "type": {
+                  "codecId": "mongo/string@1",
+                  "kind": "scalar"
+                }
+              },
+              "descuento": {
+                "nullable": false,
+                "type": {
+                  "codecId": "mongo/decimal128@1",
+                  "kind": "scalar"
+                }
+              },
+              "detalles_facturas": {
+                "many": {
+                  "elementNullable": false
+                },
+                "nullable": false,
+                "type": {
+                  "entityKind": "valueObject",
+                  "entityName": "DetalleFactura",
+                  "kind": "valueObject",
+                  "namespaceId": "__unbound__",
+                  "plane": "storage"
+                }
+              },
+              "fecha": {
+                "nullable": false,
+                "type": {
+                  "codecId": "mongo/date@1",
+                  "kind": "scalar"
+                }
+              },
+              "id": {
+                "nullable": false,
+                "type": {
+                  "codecId": "mongo/objectId@1",
+                  "kind": "scalar"
+                }
+              },
+              "iva": {
+                "nullable": false,
+                "type": {
+                  "codecId": "mongo/decimal128@1",
+                  "kind": "scalar"
+                }
+              },
+              "total": {
+                "nullable": false,
+                "type": {
+                  "codecId": "mongo/decimal128@1",
+                  "kind": "scalar"
+                }
+              },
+              "total_a_pagar": {
+                "nullable": false,
+                "type": {
+                  "codecId": "mongo/decimal128@1",
+                  "kind": "scalar"
+                }
+              }
+            },
+            "relations": {},
+            "storage": {
+              "collection": "facturas",
+              "fields": {
+                "cod_cliente": {
+                  "field": "cod_cliente"
+                },
+                "codigo": {
+                  "field": "codigo"
+                },
+                "descuento": {
+                  "field": "descuento"
+                },
+                "detalles_facturas": {
+                  "field": "detalles_facturas"
+                },
+                "fecha": {
+                  "field": "fecha"
+                },
+                "id": {
+                  "field": "_id"
+                },
+                "iva": {
+                  "field": "iva"
+                },
+                "total": {
+                  "field": "total"
+                },
+                "total_a_pagar": {
+                  "field": "total_a_pagar"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "storage": {
+    "namespaces": {
+      "__unbound__": {
+        "entries": {
+          "collection": {
+            "facturas": {
+              "indexes": [
+                {
+                  "keys": [
+                    {
+                      "direction": 1,
+                      "field": "codigo"
+                    }
+                  ],
+                  "kind": "mongo-index",
+                  "name": "codigo_1",
+                  "unique": true
+                }
+              ],
+              "kind": "mongo-collection",
+              "validator": {
+                "jsonSchema": {
+                  "additionalProperties": false,
+                  "bsonType": "object",
+                  "properties": {
+                    "_id": {
+                      "bsonType": "objectId"
+                    },
+                    "cod_cliente": {
+                      "bsonType": "int"
+                    },
+                    "codigo": {
+                      "bsonType": "string"
+                    },
+                    "descuento": {
+                      "bsonType": "decimal"
+                    },
+                    "detalles_facturas": {
+                      "bsonType": "array",
+                      "items": {
+                        "additionalProperties": false,
+                        "bsonType": "object",
+                        "properties": {
+                          "cantidad": {
+                            "bsonType": "int"
+                          },
+                          "cod_factura": {
+                            "bsonType": "int"
+                          },
+                          "cod_producto": {
+                            "bsonType": "int"
+                          },
+                          "codigo": {
+                            "bsonType": "int"
+                          },
+                          "precio": {
+                            "bsonType": "decimal"
+                          },
+                          "subtotal": {
+                            "bsonType": "decimal"
+                          }
+                        },
+                        "required": [
+                          "cantidad",
+                          "cod_factura",
+                          "cod_producto",
+                          "codigo",
+                          "precio",
+                          "subtotal"
+                        ]
+                      }
+                    },
+                    "fecha": {
+                      "bsonType": "date"
+                    },
+                    "iva": {
+                      "bsonType": "decimal"
+                    },
+                    "total": {
+                      "bsonType": "decimal"
+                    },
+                    "total_a_pagar": {
+                      "bsonType": "decimal"
+                    }
+                  },
+                  "required": [
+                    "_id",
+                    "cod_cliente",
+                    "codigo",
+                    "descuento",
+                    "detalles_facturas",
+                    "fecha",
+                    "iva",
+                    "total",
+                    "total_a_pagar"
+                  ]
+                },
+                "kind": "mongo-validator",
+                "validationAction": "error",
+                "validationLevel": "strict"
+              }
+            }
+          },
+          "valueObject": {
+            "DetalleFactura": {
+              "fields": {
+                "cantidad": {
+                  "nullable": false,
+                  "type": {
+                    "codecId": "mongo/int32@1",
+                    "kind": "scalar"
+                  }
+                },
+                "cod_factura": {
+                  "nullable": false,
+                  "type": {
+                    "codecId": "mongo/int32@1",
+                    "kind": "scalar"
+                  }
+                },
+                "cod_producto": {
+                  "nullable": false,
+                  "type": {
+                    "codecId": "mongo/int32@1",
+                    "kind": "scalar"
+                  }
+                },
+                "codigo": {
+                  "nullable": false,
+                  "type": {
+                    "codecId": "mongo/int32@1",
+                    "kind": "scalar"
+                  }
+                },
+                "precio": {
+                  "nullable": false,
+                  "type": {
+                    "codecId": "mongo/decimal128@1",
+                    "kind": "scalar"
+                  }
+                },
+                "subtotal": {
+                  "nullable": false,
+                  "type": {
+                    "codecId": "mongo/decimal128@1",
+                    "kind": "scalar"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "id": "__unbound__",
+        "kind": "mongo-database"
+      }
+    },
+    "storageHash": "29f2cb27622e3a328a215a6eb5cd8b9a457bb1ff4a96b4c9d9b6677e446bb2de"
+  },
+  "capabilities": {},
+  "extensions": {},
+  "meta": {},
+  "_generated": {
+    "warning": "⚠️  GENERATED FILE - DO NOT EDIT",
+    "message": "This file is automatically generated by \"prisma contract emit\".",
+    "regenerate": "To regenerate, run: prisma contract emit"
+  }
+}
