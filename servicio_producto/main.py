@@ -9,7 +9,7 @@ app = FastAPI(
 )
 
 Base.metadata.create_all(bind=engine)
-app.include_router(producto_router)
+app.include_router(producto_router, prefix="/api")
 
 @app.get("/")
 def inicio():
