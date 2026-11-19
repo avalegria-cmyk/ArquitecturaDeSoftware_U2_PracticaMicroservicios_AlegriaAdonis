@@ -5,10 +5,10 @@ model Factura {
   codigo        String     @unique
   fecha         Date
   cod_cliente   Int32
-  total         Decimal128
-  descuento     Decimal128
-  iva           Decimal128
-  total_a_pagar Decimal128
+  total         Double
+  descuento     Double
+  iva           Double
+  total_a_pagar Double
 
   detalles_facturas DetalleFactura[]
   @@map("facturas")
@@ -19,6 +19,6 @@ type DetalleFactura{
   cod_factura Int32
   cod_producto Int32
   cantidad Int32
-  subtotal Decimal128
-  precio Decimal128
+  subtotal Double
+  precio Double
 }

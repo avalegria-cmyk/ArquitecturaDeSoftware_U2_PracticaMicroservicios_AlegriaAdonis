@@ -32,7 +32,7 @@
               "descuento": {
                 "nullable": false,
                 "type": {
-                  "codecId": "mongo/decimal128@1",
+                  "codecId": "mongo/double@1",
                   "kind": "scalar"
                 }
               },
@@ -66,21 +66,21 @@
               "iva": {
                 "nullable": false,
                 "type": {
-                  "codecId": "mongo/decimal128@1",
+                  "codecId": "mongo/double@1",
                   "kind": "scalar"
                 }
               },
               "total": {
                 "nullable": false,
                 "type": {
-                  "codecId": "mongo/decimal128@1",
+                  "codecId": "mongo/double@1",
                   "kind": "scalar"
                 }
               },
               "total_a_pagar": {
                 "nullable": false,
                 "type": {
-                  "codecId": "mongo/decimal128@1",
+                  "codecId": "mongo/double@1",
                   "kind": "scalar"
                 }
               }
@@ -158,7 +158,7 @@
                       "bsonType": "string"
                     },
                     "descuento": {
-                      "bsonType": "decimal"
+                      "bsonType": "double"
                     },
                     "detalles_facturas": {
                       "bsonType": "array",
@@ -179,10 +179,10 @@
                             "bsonType": "int"
                           },
                           "precio": {
-                            "bsonType": "decimal"
+                            "bsonType": "double"
                           },
                           "subtotal": {
-                            "bsonType": "decimal"
+                            "bsonType": "double"
                           }
                         },
                         "required": [
@@ -199,13 +199,13 @@
                       "bsonType": "date"
                     },
                     "iva": {
-                      "bsonType": "decimal"
+                      "bsonType": "double"
                     },
                     "total": {
-                      "bsonType": "decimal"
+                      "bsonType": "double"
                     },
                     "total_a_pagar": {
-                      "bsonType": "decimal"
+                      "bsonType": "double"
                     }
                   },
                   "required": [
@@ -260,14 +260,14 @@
                 "precio": {
                   "nullable": false,
                   "type": {
-                    "codecId": "mongo/decimal128@1",
+                    "codecId": "mongo/double@1",
                     "kind": "scalar"
                   }
                 },
                 "subtotal": {
                   "nullable": false,
                   "type": {
-                    "codecId": "mongo/decimal128@1",
+                    "codecId": "mongo/double@1",
                     "kind": "scalar"
                   }
                 }
@@ -279,7 +279,7 @@
         "kind": "mongo-database"
       }
     },
-    "storageHash": "29f2cb27622e3a328a215a6eb5cd8b9a457bb1ff4a96b4c9d9b6677e446bb2de"
+    "storageHash": "b7b337b131748a998cf4b1a2711fc9f98d6ffa9450678f15885e0de056bb54d9"
   },
   "capabilities": {},
   "extensions": {},
