@@ -3,15 +3,20 @@ import { db } from '../prisma/db.js';
 import type { Factura } from '../models/factura.model.js';
 import type { DetalleFactura } from '../models/detalle-factura.model.js';
 import { ProductoClienteService } from '../service/producto-cliente.js';
+import { ClienteService } from '../service/cliente-service.js';
 @Injectable()
 export class FacturaService {
-    constructor(private readonly productoCliente: ProductoClienteService) {}
+    constructor(
+        private readonly productoCliente: ProductoClienteService,
+        private readonly clienteService: ClienteService,
+    ) {}
 
     async crear(data: Factura) {
         const factura = await db.orm.facturas.where({ codigo: data.codigo }).first();
         if (factura) {
             throw new ConflictException("Código ya existente");
         }
+        await this.clienteService.consultar(data.cod_cliente);
         return db.orm.facturas.create({...data, fecha: new Date(data.fecha)});
     }
 
@@ -28,6 +33,9 @@ export class FacturaService {
     }
     //PATCH
     async actualizar(codigo: string, data: Partial<Factura>) {
+        if (data.cod_cliente) {
+            await this.clienteService.consultar(data.cod_cliente);
+        }
         const cambios: Record<string, unknown> = { ...data };
         if (data.fecha) {
             cambios.fecha = new Date(data.fecha);
@@ -93,5 +101,12 @@ export class FacturaService {
         const producto = await this.productoCliente.consultar(detalle.cod_producto);
         return { ...detalle, precio: producto.precio, 
             subtotal: detalle.cantidad * producto.precio };
+    }
+    async listarDetalles(codigo: string) {
+        const factura = await db.orm.facturas.where({ codigo }).first();
+        if (!factura) {
+            throw new NotFoundException("Factura no encontrada");
+        }
+        return factura.detalles_facturas;
     }
 }
